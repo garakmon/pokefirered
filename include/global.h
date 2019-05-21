@@ -1,6 +1,8 @@
 #ifndef GUARD_GLOBAL_H
 #define GUARD_GLOBAL_H
 
+#include "constants/global.h"
+
 #include "config.h"
 #include "gba/gba.h"
 #include <string.h>
