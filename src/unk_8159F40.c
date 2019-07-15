@@ -87,8 +87,8 @@ void sub_815A008(struct QuestLog * questLog)
         questLog->unk_008[i].localId = gMapObjects[i].localId;
         questLog->unk_008[i].mapNum = gMapObjects[i].mapNum;
         questLog->unk_008[i].mapGroup = gMapObjects[i].mapGroup;
-        questLog->unk_008[i].x = gMapObjects[i].coords2.x;
-        questLog->unk_008[i].y = gMapObjects[i].coords2.y;
+        questLog->unk_008[i].x = gMapObjects[i].currentCoords.x;
+        questLog->unk_008[i].y = gMapObjects[i].currentCoords.y;
         questLog->unk_008[i].trainerRange_berryTreeId = gMapObjects[i].trainerRange_berryTreeId;
         questLog->unk_008[i].mapobj_unk_1F = gMapObjects[i].mapobj_unk_1F;
         questLog->unk_008[i].mapobj_unk_21 = gMapObjects[i].mapobj_unk_21;
@@ -132,8 +132,8 @@ void sub_815A1F8(const struct QuestLog * questLog, const struct MapObjectTemplat
         gMapObjects[i].localId = questLogMapObjects[i].localId;
         gMapObjects[i].mapNum = questLogMapObjects[i].mapNum;
         gMapObjects[i].mapGroup = questLogMapObjects[i].mapGroup;
-        gMapObjects[i].coords2.x = questLogMapObjects[i].x;
-        gMapObjects[i].coords2.y = questLogMapObjects[i].y;
+        gMapObjects[i].currentCoords.x = questLogMapObjects[i].x;
+        gMapObjects[i].currentCoords.y = questLogMapObjects[i].y;
         gMapObjects[i].trainerRange_berryTreeId = questLogMapObjects[i].trainerRange_berryTreeId;
         gMapObjects[i].mapobj_unk_1F = questLogMapObjects[i].mapobj_unk_1F;
         gMapObjects[i].mapobj_unk_21 = questLogMapObjects[i].mapobj_unk_21;
@@ -143,38 +143,38 @@ void sub_815A1F8(const struct QuestLog * questLog, const struct MapObjectTemplat
         {
             if (gMapObjects[i].localId == templates[j].localId)
             {
-                gMapObjects[i].coords1.x = templates[j].x + 7;
-                gMapObjects[i].coords1.y = templates[j].y + 7;
+                gMapObjects[i].initialCoords.x = templates[j].x + 7;
+                gMapObjects[i].initialCoords.y = templates[j].y + 7;
                 gMapObjects[i].range.as_nybbles.x = templates[j].range.as_nybbles.x;
                 gMapObjects[i].range.as_nybbles.y = templates[j].range.as_nybbles.y;
             }
         }
 
-        gMapObjects[i].mapobj_unk_1E = MapGridGetMetatileBehaviorAt(gMapObjects[i].coords2.x, gMapObjects[i].coords2.y);
-        if (gMapObjects[i].mapobj_unk_1F == MapGridGetMetatileBehaviorAt((s16)(gMapObjects[i].coords2.x), (s16)(gMapObjects[i].coords2.y)))
+        gMapObjects[i].mapobj_unk_1E = MapGridGetMetatileBehaviorAt(gMapObjects[i].currentCoords.x, gMapObjects[i].currentCoords.y);
+        if (gMapObjects[i].mapobj_unk_1F == MapGridGetMetatileBehaviorAt((s16)(gMapObjects[i].currentCoords.x), (s16)(gMapObjects[i].currentCoords.y)))
         {
-            gMapObjects[i].coords3.x = gMapObjects[i].coords2.x;
-            gMapObjects[i].coords3.y = gMapObjects[i].coords2.y;
+            gMapObjects[i].previousCoords.x = gMapObjects[i].currentCoords.x;
+            gMapObjects[i].previousCoords.y = gMapObjects[i].currentCoords.y;
         }
-        else if (gMapObjects[i].mapobj_unk_1F == MapGridGetMetatileBehaviorAt((s16)(gMapObjects[i].coords2.x - 1), (s16)(gMapObjects[i].coords2.y)))
+        else if (gMapObjects[i].mapobj_unk_1F == MapGridGetMetatileBehaviorAt((s16)(gMapObjects[i].currentCoords.x - 1), (s16)(gMapObjects[i].currentCoords.y)))
         {
-            gMapObjects[i].coords3.x = gMapObjects[i].coords2.x - 1;
-            gMapObjects[i].coords3.y = gMapObjects[i].coords2.y;
+            gMapObjects[i].previousCoords.x = gMapObjects[i].currentCoords.x - 1;
+            gMapObjects[i].previousCoords.y = gMapObjects[i].currentCoords.y;
         }
-        else if (gMapObjects[i].mapobj_unk_1F == MapGridGetMetatileBehaviorAt((s16)(gMapObjects[i].coords2.x + 1), (s16)(gMapObjects[i].coords2.y)))
+        else if (gMapObjects[i].mapobj_unk_1F == MapGridGetMetatileBehaviorAt((s16)(gMapObjects[i].currentCoords.x + 1), (s16)(gMapObjects[i].currentCoords.y)))
         {
-            gMapObjects[i].coords3.x = gMapObjects[i].coords2.x + 1;
-            gMapObjects[i].coords3.y = gMapObjects[i].coords2.y;
+            gMapObjects[i].previousCoords.x = gMapObjects[i].currentCoords.x + 1;
+            gMapObjects[i].previousCoords.y = gMapObjects[i].currentCoords.y;
         }
-        else if (gMapObjects[i].mapobj_unk_1F == MapGridGetMetatileBehaviorAt((s16)(gMapObjects[i].coords2.x), (s16)(gMapObjects[i].coords2.y - 1)))
+        else if (gMapObjects[i].mapobj_unk_1F == MapGridGetMetatileBehaviorAt((s16)(gMapObjects[i].currentCoords.x), (s16)(gMapObjects[i].currentCoords.y - 1)))
         {
-            gMapObjects[i].coords3.x = gMapObjects[i].coords2.x;
-            gMapObjects[i].coords3.y = gMapObjects[i].coords2.y - 1;
+            gMapObjects[i].previousCoords.x = gMapObjects[i].currentCoords.x;
+            gMapObjects[i].previousCoords.y = gMapObjects[i].currentCoords.y - 1;
         }
-        else if (gMapObjects[i].mapobj_unk_1F == MapGridGetMetatileBehaviorAt((s16)(gMapObjects[i].coords2.x), (s16)(gMapObjects[i].coords2.y + 1)))
+        else if (gMapObjects[i].mapobj_unk_1F == MapGridGetMetatileBehaviorAt((s16)(gMapObjects[i].currentCoords.x), (s16)(gMapObjects[i].currentCoords.y + 1)))
         {
-            gMapObjects[i].coords3.x = gMapObjects[i].coords2.x;
-            gMapObjects[i].coords3.y = gMapObjects[i].coords2.y + 1;
+            gMapObjects[i].previousCoords.x = gMapObjects[i].currentCoords.x;
+            gMapObjects[i].previousCoords.y = gMapObjects[i].currentCoords.y + 1;
         }
     }
 

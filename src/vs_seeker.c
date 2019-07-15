@@ -868,8 +868,8 @@ static void GatherNearbyTrainerInfo(void)
             sVsSeeker->trainerInfo[vsSeekerObjectIdx].localId = templates[mapObjectIdx].localId;
             TryGetFieldObjectIdByLocalIdAndMap(templates[mapObjectIdx].localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &fieldObjectId);
             sVsSeeker->trainerInfo[vsSeekerObjectIdx].fieldObjectId = fieldObjectId;
-            sVsSeeker->trainerInfo[vsSeekerObjectIdx].xCoord = gMapObjects[fieldObjectId].coords2.x - 7;
-            sVsSeeker->trainerInfo[vsSeekerObjectIdx].yCoord = gMapObjects[fieldObjectId].coords2.y - 7;
+            sVsSeeker->trainerInfo[vsSeekerObjectIdx].xCoord = gMapObjects[fieldObjectId].currentCoords.x - 7;
+            sVsSeeker->trainerInfo[vsSeekerObjectIdx].yCoord = gMapObjects[fieldObjectId].currentCoords.y - 7;
             sVsSeeker->trainerInfo[vsSeekerObjectIdx].graphicsId = templates[mapObjectIdx].graphicsId;
             vsSeekerObjectIdx++;
         }

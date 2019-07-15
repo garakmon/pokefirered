@@ -146,8 +146,8 @@ void sub_8150708(void)
         sub_81507BC(mapObject, sub_805C808(2));
         FieldObjectTurn(mapObject, mapObject->placeholder18);
         SetPlayerAvatarStateMask(0x08);
-        gFieldEffectArguments[0] = mapObject->coords2.x;
-        gFieldEffectArguments[1] = mapObject->coords2.y;
+        gFieldEffectArguments[0] = mapObject->currentCoords.x;
+        gFieldEffectArguments[1] = mapObject->currentCoords.y;
         gFieldEffectArguments[2] = gPlayerAvatar.mapObjectId;
         fieldEffectId = FieldEffectStart(0x08);
         mapObject->mapobj_unk_1A = fieldEffectId;

@@ -82,6 +82,7 @@ union __attribute__((packed)) MapObjectRange {
     } __attribute__((aligned (1))) as_nybbles;
 } __attribute__((aligned (1)));
 
+// rename to EventObjectTemplate
 struct MapObjectTemplate
 {
     /*0x00*/ u8 localId;
@@ -187,6 +188,7 @@ struct MapHeader
     /* 0x1B */ u8 battleType;
 };
 
+// rename to EventObject
 struct MapObject
 {
     /*0x00*/ u32 active:1;
@@ -230,15 +232,15 @@ struct MapObject
     /*0x0A*/ u8 mapGroup;
     /*0x0B*/ u8 mapobj_unk_0B_0:4;
              u8 elevation:4;
-    /*0x0C*/ struct Coords16 coords1;
-    /*0x10*/ struct Coords16 coords2;
-    /*0x14*/ struct Coords16 coords3;
+    /*0x0C*/ struct Coords16 initialCoords;
+    /*0x10*/ struct Coords16 currentCoords;
+    /*0x14*/ struct Coords16 previousCoords;
     /*0x18*/ u8 mapobj_unk_18:4;  //current direction?
     /*0x18*/ u8 placeholder18:4;
     /*0x19*/ union MapObjectRange range;
     /*0x1A*/ u8 mapobj_unk_1A;
     /*0x1B*/ u8 mapobj_unk_1B;
-    /*0x1C*/ u8 mapobj_unk_1C;
+    /*0x1C*/ u8 movementActionId;
     /*0x1D*/ u8 trainerRange_berryTreeId;
     /*0x1E*/ u8 mapobj_unk_1E;
     /*0x1F*/ u8 mapobj_unk_1F;
